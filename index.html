@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Cyberpunk de Jefferson</title>
+    <title>Portafolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&display=swap');
         
@@ -14,7 +14,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            overflow-y: scroll; /* Habilitar barra de desplazamiento vertical */
+            overflow-y: scroll;
         }
 
         /* Personalización de la barra de desplazamiento */
@@ -44,9 +44,10 @@
             text-transform: uppercase;
             letter-spacing: 4px;
             border-bottom: 2px solid #ff00ff;
-            animation: flicker 1.5s infinite alternate;
+            animation: smoothMove 3s infinite alternate;
             text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
-            font-family: 'Press Start 2P', cursive; /* Fuente cyberpunk */
+            font-family: 'Press Start 2P', cursive;
+            position: relative;
         }
         header p {
             font-size: 0.6em;
@@ -55,20 +56,23 @@
             letter-spacing: 2px;
             color: #00ffcc;
         }
+	 @keyframes smoothMove {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(5px); }
+            100% { transform: translateY(0px); }
+        }
         .container {
             padding: 50px;
             animation: fadeIn 2s ease-in;
-            border: 2px solid #ff00ff;
-            box-shadow: 0 0 15px #ff00ff;
+            border: 3px solid #ff00ff;
+            box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffcc;
             display: inline-block;
             background: rgba(0, 0, 0, 0.7);
             padding: 30px;
             border-radius: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
         }
         .btn {
-            background: #ff00ff;
+            background: linear-gradient(90deg, #ff00ff, #00ffcc);
             color: #0d0d0d;
             padding: 15px 30px;
             text-transform: uppercase;
@@ -78,9 +82,8 @@
             transition: 0.3s;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 10px #ff00ff;
-            margin: 10px;
-            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffcc;
+            animation: glow 1.5s infinite alternate;
         }
         .btn::before {
             content: "";
@@ -98,9 +101,13 @@
             transform: scaleX(1);
         }
         .btn:hover {
-            background: #00ffcc;
+            background: linear-gradient(90deg, #00ffcc, #ff00ff);
             color: #fff;
-            box-shadow: 0 0 20px #00ffcc;
+            box-shadow: 0 0 30px #ff00ff, 0 0 40px #00ffcc;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffcc; }
+            100% { box-shadow: 0 0 30px #ff00ff, 0 0 50px #00ffcc; }
         }
         @keyframes flicker {
             0% { opacity: 1; }
@@ -252,11 +259,11 @@
         <section class="knowledge">
             <h2>Conocimientos</h2>
             <div class="knowledge-grid">
-                <div class="knowledge-item">Java</div>
-                <div class="knowledge-item">Python</div>
-                <div class="knowledge-item">SQL</div>
-                <div class="knowledge-item">HTML</div>
-                <div class="knowledge-item">C#</div>
+                <div class="btn">Java</div>
+                <div class="btn">Python</div>
+                <div class="btn">SQL</div>
+                <div class="btn">HTML</div>
+                <div class="btn">C#</div>
             </div>
         </section>
 
