@@ -5,159 +5,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio de Jefferson</title>
     <style>
-        /* Estilos generales */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
+            background-color: #0d0d0d;
+            color: #00ffcc;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            overflow-y: scroll; /* Habilitar barra de desplazamiento vertical */
+        }
+
+        /* Personalización de la barra de desplazamiento */
+        body::-webkit-scrollbar {
+            width: 12px; /* Ancho de la barra de desplazamiento */
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #0d0d0d; /* Color de fondo de la pista */
+            border-left: 1px solid #00ffcc; /* Borde neón */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: #00ffcc; /* Color del pulgar (scroll thumb) */
+            border-radius: 6px; /* Bordes redondeados */
+            border: 2px solid #0d0d0d; /* Borde para destacar */
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: #ff00ff; /* Cambia de color al pasar el cursor */
+            box-shadow: 0 0 10px #ff00ff; /* Efecto de brillo al pasar el cursor */
         }
 
         header {
-            background: linear-gradient(135deg, #4fc3f7, #ba68c8);
-            padding: 50px 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 2.8em;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        h2 {
-            color: #4fc3f7;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .container {
             padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-bottom: 2px solid #00ffcc;
+            animation: flicker 1.5s infinite alternate;
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+        }
+        header p {
+            font-size: 0.6em;
+            margin: 10px 0 0;
+            text-transform: none;
+            letter-spacing: 1px;
+        }
+        .container {
+            padding: 50px;
+            animation: fadeIn 2s ease-in;
+            border: 2px solid #00ffcc;
+            box-shadow: 0 0 15px #00ffcc;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: #00ffcc;
+            color: #0d0d0d;
+            padding: 15px 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 0 10px #00ffcc;
+            margin: 10px;
         }
-
-        /* Sección "Sobre Mí" */
-        .about-me {
-            background-color: #2a2a2a;
-            padding: 30px;
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease-in-out;
+        }
+        .btn:hover::before {
+            transform: scaleX(1);
+        }
+        .btn:hover {
+            background: #ff00ff;
+            color: #fff;
+            box-shadow: 0 0 20px #ff00ff;
+        }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .background-anim {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(45deg, #000000, #001a1a, #000000);
+            background-size: 400% 400%;
+            animation: backgroundMove 6s infinite alternate;
+        }
+        @keyframes backgroundMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .about-me, .knowledge, .projects {
             margin: 20px 0;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 20px;
+            border: 2px solid #00ffcc;
+            box-shadow: 0 0 15px #00ffcc;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in;
         }
-
-        .about-me:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 15px rgba(79, 195, 247, 0.3);
-        }
-
-        .about-me p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #e0e0e0;
-        }
-
-        /* Sección "Conocimientos" */
-        .knowledge {
-            background-color: #2a2a2a;
-            padding: 30px;
-            margin: 20px 0;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
         .knowledge-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
             text-align: center;
         }
-
         .knowledge-item {
-            background-color: #3a3a3a;
-            padding: 20px;
-            border-radius: 10px;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #e0e0e0;
-        }
-
-        .knowledge-item:hover {
-            background-color: #4fc3f7;
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(79, 195, 247, 0.3);
-            cursor: pointer;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #4fc3f7, #ba68c8);
-            text-align: center;
+            background: #00ffcc;
+            color: #0d0d0d;
             padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 0 10px #00ffcc;
+            transition: 0.3s;
+        }
+        .knowledge-item:hover {
+            background: #ff00ff;
+            color: #fff;
+            box-shadow: 0 0 20px #ff00ff;
+        }
+        .projects h2 {
+            margin-bottom: 20px;
+        }
+
+        /* Estilos del modal */
+        .modal {
+            display: none;
             position: fixed;
-            width: 100%;
-            bottom: 0;
-            box-shadow: 0 -4px 10px rgba(79, 195, 247, 0.3);
-            z-index: 1;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 1em;
-            color: #ffffff;
-        }
-
-        /* Animaciones */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .about-me, .knowledge {
-            animation: fadeIn 1s ease-out;
-        }
-
-        /* Contenedor de partículas */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            z-index: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #0d0d0d;
+            padding: 20px;
+            border: 2px solid #00ffcc;
+            box-shadow: 0 0 20px #00ffcc;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #00ffcc;
+            color: #0d0d0d;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .close-modal:hover {
+            background: #ff00ff;
+            color: #fff;
+        }
+
+        /* Texto de derechos de autor al final */
+        .copyright {
+            padding: 20px;
+            font-size: 0.8em;
+            color: #00ffcc;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Contenedor de partículas -->
-    <div id="particles-js"></div>
-
+    <div class="background-anim"></div>
     <header>
-        <h1>Jefferson Moraga Loria</h1>
+        Jefferson Moraga Loria
         <p>Estudiante de Informática Empresarial</p>
     </header>
-
     <div class="container">
         <section class="about-me">
             <h2>Sobre Mí</h2>
-            <p>"¡Hola! Soy Jefferson, un programador junior y estudiante de la Universidad de Costa Rica (UCR). Cuento con conocimientos en diversos lenguajes de programación y he desarrollado proyectos como parte de los cursos de la carrera. Disfruto creando soluciones eficientes y estoy siempre aprendiendo nuevas tecnologías."</p>
+            <p>¡Hola! Soy Jefferson, un programador junior y estudiante de la Universidad de Costa Rica (UCR). Cuento con conocimientos en diversos lenguajes de programación y he desarrollado proyectos como parte de los cursos de la carrera. Disfruto creando soluciones eficientes y estoy siempre aprendiendo nuevas tecnologías.</p>
         </section>
 
         <section class="knowledge">
@@ -170,102 +230,44 @@
                 <div class="knowledge-item">C#</div>
             </div>
         </section>
+
+        <section class="projects">
+            <h2>Proyectos</h2>
+            <button class="btn" onclick="openModal()">Ver Proyectos</button>
+        </section>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Jefferson Moraga Loria</p>
-    </footer>
+    <!-- Texto de derechos de autor al final -->
+    <div class="copyright">
+        &copy; 2025 Jefferson Moraga Loria. Todos los derechos reservados.
+    </div>
 
-    <!-- Script de tsParticles -->
+    <!-- Modal para proyectos -->
+    <div id="projectsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">Cerrar</button>
+            <h2>Mis Proyectos</h2>
+            <p>Aquí estarán tus proyectos en el futuro. ¡Próximamente!</p>
+        </div>
+    </div>
+
     <script>
-        tsParticles.load("particles-js", {
-            particles: {
-                number: {
-                    value: 100, // Más partículas
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: ["#4fc3f7", "#ba68c8"] // Colores azul y morado
-                },
-                shape: {
-                    type: "circle", // Forma de círculo
-                    stroke: {
-                        width: 0,
-                        color: "#000000"
-                    }
-                },
-                opacity: {
-                    value: 0.7, // Más visibles
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 1,
-                        opacity_min: 0.3,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3, // Tamaño más pequeño
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 2,
-                        size_min: 1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150, // Distancia más larga
-                    color: "#4fc3f7",
-                    opacity: 0.4, // Más sutiles
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 3, // Movimiento más lento
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                    attract: {
-                        enable: true,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "grab" // Atrae las partículas al pasar el cursor
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push" // Empuja las partículas al hacer clic
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 200,
-                        line_linked: {
-                            opacity: 0.8
-                        }
-                    },
-                    push: {
-                        particles_nb: 4 // Genera partículas al hacer clic
-                    }
-                }
-            },
-            retina_detect: true
-        });
+        // Funciones para abrir y cerrar el modal
+        function openModal() {
+            document.getElementById("projectsModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("projectsModal").style.display = "none";
+        }
+
+        // Cerrar el modal si se hace clic fuera del contenido
+        window.onclick = function(event) {
+            const modal = document.getElementById("projectsModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
     </script>
 </body>
 </html>
