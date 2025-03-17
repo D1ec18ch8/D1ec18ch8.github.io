@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio de Jefferson</title>
+    <title>Portafolio Cyberpunk de Jefferson</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&family=Press+Start+2P&display=swap');
         
         body {
             background-color: #0d0d0d;
@@ -24,40 +24,42 @@
 
         body::-webkit-scrollbar-track {
             background: #0d0d0d; /* Color de fondo de la pista */
-            border-left: 1px solid #00ffcc; /* Borde neón */
+            border-left: 1px solid #ff00ff; /* Borde neón */
         }
 
         body::-webkit-scrollbar-thumb {
-            background: #00ffcc; /* Color del pulgar (scroll thumb) */
+            background: #ff00ff; /* Color del pulgar (scroll thumb) */
             border-radius: 6px; /* Bordes redondeados */
             border: 2px solid #0d0d0d; /* Borde para destacar */
         }
 
         body::-webkit-scrollbar-thumb:hover {
-            background: #ff00ff; /* Cambia de color al pasar el cursor */
-            box-shadow: 0 0 10px #ff00ff; /* Efecto de brillo al pasar el cursor */
+            background: #00ffcc; /* Cambia de color al pasar el cursor */
+            box-shadow: 0 0 10px #00ffcc; /* Efecto de brillo al pasar el cursor */
         }
 
         header {
             padding: 20px;
-            font-size: 2em;
+            font-size: 2.5em;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            border-bottom: 2px solid #00ffcc;
+            letter-spacing: 4px;
+            border-bottom: 2px solid #ff00ff;
             animation: flicker 1.5s infinite alternate;
-            text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            font-family: 'Press Start 2P', cursive; /* Fuente cyberpunk */
         }
         header p {
             font-size: 0.6em;
             margin: 10px 0 0;
             text-transform: none;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: #00ffcc;
         }
         .container {
             padding: 50px;
             animation: fadeIn 2s ease-in;
-            border: 2px solid #00ffcc;
-            box-shadow: 0 0 15px #00ffcc;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 15px #ff00ff;
             display: inline-block;
             background: rgba(0, 0, 0, 0.7);
             padding: 30px;
@@ -66,7 +68,7 @@
             margin-bottom: 20px;
         }
         .btn {
-            background: #00ffcc;
+            background: #ff00ff;
             color: #0d0d0d;
             padding: 15px 30px;
             text-transform: uppercase;
@@ -76,8 +78,9 @@
             transition: 0.3s;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 10px #00ffcc;
+            box-shadow: 0 0 10px #ff00ff;
             margin: 10px;
+            font-family: 'Orbitron', sans-serif;
         }
         .btn::before {
             content: "";
@@ -95,9 +98,9 @@
             transform: scaleX(1);
         }
         .btn:hover {
-            background: #ff00ff;
+            background: #00ffcc;
             color: #fff;
-            box-shadow: 0 0 20px #ff00ff;
+            box-shadow: 0 0 20px #00ffcc;
         }
         @keyframes flicker {
             0% { opacity: 1; }
@@ -115,7 +118,7 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
-            background: linear-gradient(45deg, #000000, #001a1a, #000000);
+            background: linear-gradient(45deg, #000000, #1a0033, #000000);
             background-size: 400% 400%;
             animation: backgroundMove 6s infinite alternate;
         }
@@ -123,11 +126,11 @@
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
-        .about-me, .knowledge, .projects {
+        .about-me, .knowledge, .projects, .social-links, .contact {
             margin: 20px 0;
             padding: 20px;
-            border: 2px solid #00ffcc;
-            box-shadow: 0 0 15px #00ffcc;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 15px #ff00ff;
             background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             animation: fadeIn 2s ease-in;
@@ -139,18 +142,19 @@
             text-align: center;
         }
         .knowledge-item {
-            background: #00ffcc;
+            background: #ff00ff;
             color: #0d0d0d;
             padding: 15px;
             border-radius: 10px;
             font-weight: bold;
-            box-shadow: 0 0 10px #00ffcc;
+            box-shadow: 0 0 10px #ff00ff;
             transition: 0.3s;
         }
         .knowledge-item:hover {
-            background: #ff00ff;
+            background: #00ffcc;
             color: #fff;
-            box-shadow: 0 0 20px #ff00ff;
+            box-shadow: 0 0 20px #00ffcc;
+            transform: scale(1.1); /* Efecto de escala al pasar el cursor */
         }
         .projects h2 {
             margin-bottom: 20px;
@@ -172,8 +176,8 @@
         .modal-content {
             background: #0d0d0d;
             padding: 20px;
-            border: 2px solid #00ffcc;
-            box-shadow: 0 0 20px #00ffcc;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 20px #ff00ff;
             border-radius: 10px;
             max-width: 600px;
             width: 90%;
@@ -184,7 +188,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background: #00ffcc;
+            background: #ff00ff;
             color: #0d0d0d;
             border: none;
             padding: 5px 10px;
@@ -193,7 +197,7 @@
             border-radius: 5px;
         }
         .close-modal:hover {
-            background: #ff00ff;
+            background: #00ffcc;
             color: #fff;
         }
 
@@ -201,10 +205,35 @@
         .copyright {
             padding: 20px;
             font-size: 0.8em;
-            color: #00ffcc;
+            color: #ff00ff;
             text-align: center;
             margin-top: 20px;
             margin-bottom: 20px;
+        }
+
+        /* Estilos para la sección de redes sociales */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .social-links a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+
+        /* Estilos para la sección de contacto */
+        .contact {
+            text-align: center;
+        }
+        .contact .btn {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -235,11 +264,32 @@
             <h2>Proyectos</h2>
             <button class="btn" onclick="openModal()">Ver Proyectos</button>
         </section>
+
+        <!-- Sección de redes sociales -->
+        <section class="social-links">
+            <h2>Redes:</h2>
+            <div>
+                <br>
+                <a href="https://www.linkedin.com/in/jefferson-moraga-loria-812172324/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/D1ec18ch8" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </section>
+
+        <!-- Sección de contacto -->
+        <section class="contact">
+            <h2>Contacto</h2>
+            <p>Si deseas contactarme, haz clic en el botón de abajo:</p>
+            <a href="mailto:jeffersonmoragaloria@gmail.com" class="btn">Enviar Correo</a>
+        </section>
     </div>
 
     <!-- Texto de derechos de autor al final -->
     <div class="copyright">
-        &copy; 2025 Jefferson Moraga Loria. Todos los derechos reservados.
+        &copy; 2025 Jefferson Moraga Loria.
     </div>
 
     <!-- Modal para proyectos -->
@@ -250,6 +300,9 @@
             <p>Aquí estarán tus proyectos en el futuro. ¡Próximamente!</p>
         </div>
     </div>
+
+    <!-- Font Awesome para íconos -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
         // Funciones para abrir y cerrar el modal
