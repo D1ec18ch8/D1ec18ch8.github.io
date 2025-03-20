@@ -56,7 +56,7 @@
             letter-spacing: 2px;
             color: #00ffcc;
         }
-	 @keyframes smoothMove {
+        @keyframes smoothMove {
             0% { transform: translateY(0px); }
             50% { transform: translateY(5px); }
             100% { transform: translateY(0px); }
@@ -71,7 +71,7 @@
             padding: 30px;
             border-radius: 10px;
         }
-        .btn {
+        .btn, .knowledge-item {
             background: linear-gradient(90deg, #ff00ff, #00ffcc);
             color: #0d0d0d;
             padding: 15px 30px;
@@ -85,7 +85,7 @@
             box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffcc;
             animation: glow 1.5s infinite alternate;
         }
-        .btn::before {
+        .btn::before, .knowledge-item::before {
             content: "";
             position: absolute;
             top: 0;
@@ -97,13 +97,14 @@
             transform-origin: left;
             transition: transform 0.5s ease-in-out;
         }
-        .btn:hover::before {
+        .btn:hover::before, .knowledge-item:hover::before {
             transform: scaleX(1);
         }
-        .btn:hover {
+        .btn:hover, .knowledge-item:hover {
             background: linear-gradient(90deg, #00ffcc, #ff00ff);
             color: #fff;
             box-shadow: 0 0 30px #ff00ff, 0 0 40px #00ffcc;
+            transform: scale(1.1); /* Efecto de escala al pasar el cursor */
         }
         @keyframes glow {
             0% { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffcc; }
@@ -147,21 +148,6 @@
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
             text-align: center;
-        }
-        .knowledge-item {
-            background: #ff00ff;
-            color: #0d0d0d;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            box-shadow: 0 0 10px #ff00ff;
-            transition: 0.3s;
-        }
-        .knowledge-item:hover {
-            background: #00ffcc;
-            color: #fff;
-            box-shadow: 0 0 20px #00ffcc;
-            transform: scale(1.1); /* Efecto de escala al pasar el cursor */
         }
         .projects h2 {
             margin-bottom: 20px;
@@ -259,11 +245,11 @@
         <section class="knowledge">
             <h2>Conocimientos</h2>
             <div class="knowledge-grid">
-                <div class="btn">Java</div>
-                <div class="btn">Python</div>
-                <div class="btn">SQL</div>
-                <div class="btn">HTML</div>
-                <div class="btn">C#</div>
+                <div class="knowledge-item" onclick="openLanguageModal('Java')">Java</div>
+                <div class="knowledge-item" onclick="openLanguageModal('Python')">Python</div>
+                <div class="knowledge-item" onclick="openLanguageModal('SQL')">SQL</div>
+                <div class="knowledge-item" onclick="openLanguageModal('HTML')">HTML</div>
+                <div class="knowledge-item" onclick="openLanguageModal('C#')">C#</div>
             </div>
         </section>
 
@@ -308,11 +294,20 @@
         </div>
     </div>
 
+    <!-- Modal para descripciones de lenguajes -->
+    <div id="languageModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeLanguageModal()">Cerrar</button>
+            <h2 id="languageTitle"></h2>
+            <p id="languageDescription"></p>
+        </div>
+    </div>
+
     <!-- Font Awesome para íconos -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        // Funciones para abrir y cerrar el modal
+        // Funciones para abrir y cerrar el modal de proyectos
         function openModal() {
             document.getElementById("projectsModal").style.display = "flex";
         }
@@ -321,11 +316,43 @@
             document.getElementById("projectsModal").style.display = "none";
         }
 
+        // Funciones para abrir y cerrar el modal de descripciones de lenguajes
+        function openLanguageModal(language) {
+            const modal = document.getElementById("languageModal");
+            const title = document.getElementById("languageTitle");
+            const description = document.getElementById("languageDescription");
+
+            // Definir las descripciones de cada lenguaje
+            const descriptions = {
+                "Java": "Java es un lenguaje de programación orientado a objetos ampliamente utilizado para desarrollar aplicaciones empresariales, aplicaciones móviles (Android) y sistemas embebidos.",
+                "Python": "Python es un lenguaje de programación interpretado, de alto nivel y multipropósito. Es conocido por su sintaxis simple y legible, ideal para desarrollo web, ciencia de datos e inteligencia artificial.",
+                "SQL": "SQL (Structured Query Language) es un lenguaje utilizado para gestionar y manipular bases de datos relacionales. Permite realizar consultas, inserciones, actualizaciones y eliminaciones de datos.",
+                "HTML": "HTML (HyperText Markup Language) es el lenguaje estándar para crear páginas web. Define la estructura y el contenido de una página mediante etiquetas.",
+                "C#": "C# es un lenguaje de programación orientado a objetos desarrollado por Microsoft. Se utiliza principalmente para desarrollar aplicaciones de escritorio, juegos (Unity) y aplicaciones web con .NET."
+            };
+
+            // Mostrar la descripción correspondiente
+            title.textContent = language;
+            description.textContent = descriptions[language];
+
+            // Mostrar el modal
+            modal.style.display = "flex";
+        }
+
+        function closeLanguageModal() {
+            document.getElementById("languageModal").style.display = "none";
+        }
+
         // Cerrar el modal si se hace clic fuera del contenido
         window.onclick = function(event) {
-            const modal = document.getElementById("projectsModal");
-            if (event.target === modal) {
+            const projectsModal = document.getElementById("projectsModal");
+            const languageModal = document.getElementById("languageModal");
+
+            if (event.target === projectsModal) {
                 closeModal();
+            }
+            if (event.target === languageModal) {
+                closeLanguageModal();
             }
         };
     </script>
