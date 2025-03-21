@@ -106,7 +106,7 @@
         }
 
         /* Secciones */
-        .about-me, .knowledge, .projects, .social-links, .contact {
+        .about-me, .knowledge, .projects, .acreditaciones, .social-links, .contact {
             margin: 20px 0;
             padding: 20px;
             border: 2px solid #00ccff;
@@ -201,7 +201,11 @@
     <!-- Música de fondo -->
     <audio id="music" loop>
         <source src="undertale-theme.mp3" type="audio/mpeg">
-        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+    <!-- Sonido de tecleo -->
+    <audio id="typing-sound" loop>
+        <source src="sans-voice.mp3" type="audio/mpeg">
     </audio>
 
     <div class="background-anim"></div>
@@ -228,7 +232,12 @@
 
         <section class="projects">
             <h2>Proyectos</h2>
-            <button class="btn" onclick="openModal()">Ver Proyectos</button>
+            <button class="btn" onclick="openModal('projects')">Ver Proyectos</button>
+        </section>
+
+        <section class="acreditaciones">
+            <h2>Acreditaciones</h2>
+            <button class="btn" onclick="openModal('acreditaciones')">Ver Acreditaciones</button>
         </section>
 
         <section class="social-links">
@@ -260,7 +269,16 @@
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">Cerrar</button>
             <h2>Mis Proyectos</h2>
-            <p>Aquí estarán mis proyectos en el futuro. ¡Próximamente!</p>
+            <p id="projectsText"></p>
+        </div>
+    </div>
+
+    <!-- Modal para acreditaciones -->
+    <div id="acreditacionesModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">Cerrar</button>
+            <h2>Mis Acreditaciones</h2>
+            <p id="acreditacionesText"></p>
         </div>
     </div>
 
@@ -282,13 +300,46 @@
         music.volume = 0.5; // Ajusta el volumen
         music.play();
 
-        // Funciones para abrir y cerrar el modal de proyectos
-        function openModal() {
-            document.getElementById("projectsModal").style.display = "flex";
+        // Sonido de tecleo
+        const typingSound = document.getElementById("typing-sound");
+
+        // Efecto de texto que se escribe
+        function typeText(element, text, speed = 50) {
+            let i = 0;
+            element.textContent = "";
+            typingSound.play(); // Reproducir sonido de tecleo
+            const typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    typingSound.pause(); // Detener sonido de tecleo
+                    typingSound.currentTime = 0; // Reiniciar sonido
+                }
+            }, speed);
+        }
+
+        // Funciones para abrir y cerrar modales
+        function openModal(type) {
+            const modal = document.getElementById(`${type}Modal`);
+            const textElement = document.getElementById(`${type}Text`);
+
+            let text = "";
+            if (type === "projects") {
+                text = "Aquí estarán mis proyectos en el futuro. ¡Próximamente!";
+            } else if (type === "acreditaciones") {
+                text = "Aquí estarán mis acreditaciones en el futuro. ¡Próximamente!";
+            }
+
+            modal.style.display = "flex";
+            typeText(textElement, text);
         }
 
         function closeModal() {
-            document.getElementById("projectsModal").style.display = "none";
+            document.querySelectorAll(".modal").forEach(modal => {
+                modal.style.display = "none";
+            });
         }
 
         // Funciones para abrir y cerrar el modal de descripciones de lenguajes
@@ -306,8 +357,8 @@
             };
 
             title.textContent = language;
-            description.textContent = descriptions[language];
             modal.style.display = "flex";
+            typeText(description, descriptions[language]);
         }
 
         function closeLanguageModal() {
@@ -316,14 +367,8 @@
 
         // Cerrar el modal si se hace clic fuera del contenido
         window.onclick = function(event) {
-            const projectsModal = document.getElementById("projectsModal");
-            const languageModal = document.getElementById("languageModal");
-
-            if (event.target === projectsModal) {
+            if (event.target.classList.contains("modal")) {
                 closeModal();
-            }
-            if (event.target === languageModal) {
-                closeLanguageModal();
             }
         };
     </script>
