@@ -106,7 +106,7 @@
         }
 
         /* Secciones */
-        .about-me, .knowledge, .projects, .acreditaciones, .social-links, .contact {
+        .about-me, .knowledge, .projects, .certificaciones, .social-links, .contact {
             margin: 20px 0;
             padding: 20px;
             border: 2px solid #00ccff;
@@ -195,18 +195,76 @@
             color: #00aaff;
             text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
         }
+
+        /* Botón de volumen */
+        .volume-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-btn {
+            background: black;
+            color: #00ccff;
+            border: 2px solid #00ccff;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px #00ccff;
+        }
+
+        .volume-btn:hover {
+            background: #00ccff;
+            color: black;
+            box-shadow: 0 0 20px #00ccff;
+        }
+
+        #volume-slider {
+            width: 100px;
+            appearance: none;
+            background: #00ccff;
+            height: 5px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #00ccff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <!-- Música de fondo -->
     <audio id="music" loop>
         <source src="undertale-theme.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
     </audio>
 
     <!-- Sonido de tecleo -->
     <audio id="typing-sound" loop>
         <source src="sans-voice.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
     </audio>
+
+    <!-- Controles de volumen -->
+    <div class="volume-controls">
+        <button class="volume-btn" onclick="toggleMute()">🎵</button>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+    </div>
 
     <div class="background-anim"></div>
     <header>
@@ -235,9 +293,9 @@
             <button class="btn" onclick="openModal('projects')">Ver Proyectos</button>
         </section>
 
-        <section class="acreditaciones">
-            <h2>Acreditaciones</h2>
-            <button class="btn" onclick="openModal('acreditaciones')">Ver Acreditaciones</button>
+        <section class="certificaciones">
+            <h2>Certificaciones</h2>
+            <button class="btn" onclick="openModal('certificaciones')">Ver Certificaciones</button>
         </section>
 
         <section class="social-links">
@@ -273,14 +331,25 @@
         </div>
     </div>
 
-    <!-- Modal para acreditaciones -->
-    <div id="acreditacionesModal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">Cerrar</button>
-            <h2>Mis Acreditaciones</h2>
-            <p id="acreditacionesText"></p>
-        </div>
+    <!-- Modal para certificaciones -->
+<div id="certificacionesModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">Cerrar</button>
+        <h2>Mis Certificaciones</h2>
+        <ul>
+            <li>
+                <a href="https://www.credly.com/badges/9bdc80da-56e6-42bf-b3ce-d62652c21389/linked_in_profile" target="_blank">
+                    Fundamentos de la Dirección de Proyectos Predictivos
+                </a>
+            </li>
+            <li>
+                <a href="https://www.credly.com/badges/2e59663b-362d-462c-948c-f8a445119692" target="_blank">
+                    Fundamentos de la Dirección de Proyectos Ágiles
+                </a>
+            </li>
+        </ul>
     </div>
+</div>
 
     <!-- Modal para descripciones de lenguajes -->
     <div id="languageModal" class="modal">
@@ -297,8 +366,21 @@
     <script>
         // Reproducir música de fondo
         const music = document.getElementById("music");
-        music.volume = 0.5; // Ajusta el volumen
+        const volumeSlider = document.getElementById("volume-slider");
+
+        music.volume = volumeSlider.value; // Establecer volumen inicial
         music.play();
+
+        // Control de volumen
+        volumeSlider.addEventListener("input", () => {
+            music.volume = volumeSlider.value;
+        });
+
+        // Silenciar/desilenciar música
+        function toggleMute() {
+            music.muted = !music.muted;
+            volumeSlider.disabled = music.muted;
+        }
 
         // Sonido de tecleo
         const typingSound = document.getElementById("typing-sound");
@@ -328,12 +410,10 @@
             let text = "";
             if (type === "projects") {
                 text = "Aquí estarán mis proyectos en el futuro. ¡Próximamente!";
-            } else if (type === "acreditaciones") {
-                text = "Aquí estarán mis acreditaciones en el futuro. ¡Próximamente!";
             }
 
             modal.style.display = "flex";
-            typeText(textElement, text);
+            if (textElement) typeText(textElement, text);
         }
 
         function closeModal() {
