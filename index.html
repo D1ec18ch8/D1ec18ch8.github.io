@@ -332,24 +332,24 @@
     </div>
 
     <!-- Modal para certificaciones -->
-<div id="certificacionesModal" class="modal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closeModal()">Cerrar</button>
-        <h2>Mis Certificaciones</h2>
-        <ul>
-            <li>
-                <a href="https://www.credly.com/badges/9bdc80da-56e6-42bf-b3ce-d62652c21389/linked_in_profile" target="_blank">
-                    Fundamentos de la Dirección de Proyectos Predictivos
-                </a>
-            </li>
-            <li>
-                <a href="https://www.credly.com/badges/2e59663b-362d-462c-948c-f8a445119692" target="_blank">
-                    Fundamentos de la Dirección de Proyectos Ágiles
-                </a>
-            </li>
-        </ul>
+    <div id="certificacionesModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">Cerrar</button>
+            <h2>Mis Certificaciones</h2>
+            <ul>
+                <li>
+                    <a href="https://www.credly.com/badges/9bdc80da-56e6-42bf-b3ce-d62652c21389/linked_in_profile" target="_blank">
+                        Fundamentos de la Dirección de Proyectos Predictivos
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.credly.com/badges/2e59663b-362d-462c-948c-f8a445119692" target="_blank">
+                        Fundamentos de la Dirección de Proyectos Ágiles
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
 
     <!-- Modal para descripciones de lenguajes -->
     <div id="languageModal" class="modal">
@@ -364,12 +364,9 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        // Reproducir música de fondo
+        // Música de fondo
         const music = document.getElementById("music");
         const volumeSlider = document.getElementById("volume-slider");
-
-        music.volume = volumeSlider.value; // Establecer volumen inicial
-        music.play();
 
         // Control de volumen
         volumeSlider.addEventListener("input", () => {
@@ -382,11 +379,18 @@
             volumeSlider.disabled = music.muted;
         }
 
+        // Reproducir música después de la interacción del usuario
+        document.addEventListener("click", () => {
+            if (music.paused) {
+                music.play();
+            }
+        }, { once: true }); // Solo se ejecuta una vez
+
         // Sonido de tecleo
         const typingSound = document.getElementById("typing-sound");
 
         // Efecto de texto que se escribe
-        function typeText(element, text, speed = 50) {
+        function typeText(element, text, speed = 30) {
             let i = 0;
             element.textContent = "";
             typingSound.play(); // Reproducir sonido de tecleo
