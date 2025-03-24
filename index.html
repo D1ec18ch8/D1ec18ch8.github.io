@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio - Undertale Style</title>
+    <title>Portafolio - Jefferson</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <style>
         /* Estilos generales */
@@ -245,6 +245,27 @@
             border-radius: 50%;
             cursor: pointer;
         }
+        .certificaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.certificacion-img {
+    width: 100%;
+    max-width: 200px;
+    border: 2px solid #00ccff;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 15px #00ccff;
+}
+
+.certificacion-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #00ccff;
+}
     </style>
 </head>
 <body>
@@ -335,19 +356,18 @@
     <div id="certificacionesModal" class="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">Cerrar</button>
-            <h2>Mis Certificaciones</h2>
-            <ul>
-                <li>
+            <section class="certificaciones">
+                <h2>Certificaciones</h2>
+                <div class="certificaciones-grid">
                     <a href="https://www.credly.com/badges/9bdc80da-56e6-42bf-b3ce-d62652c21389/linked_in_profile" target="_blank">
-                        Fundamentos de la Dirección de Proyectos Predictivos
+                        <img src="Predictive.png" alt="Certificación 1" class="certificacion-img">
                     </a>
-                </li>
-                <li>
                     <a href="https://www.credly.com/badges/2e59663b-362d-462c-948c-f8a445119692" target="_blank">
-                        Fundamentos de la Dirección de Proyectos Ágiles
+                        <img src="Agile.png" alt="Certificación 2" class="certificacion-img">
                     </a>
-                </li>
-            </ul>
+                    <!-- Agrega más certificaciones según sea necesario -->
+                </div>
+            </section>
         </div>
     </div>
 
