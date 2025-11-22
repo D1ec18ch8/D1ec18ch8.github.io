@@ -26,7 +26,7 @@
         // Map para controlar intervalos activos por elemento y evitar solapamientos
         const activeTypingIntervals = new Map();
 
-        // Detener el efecto de tecleo en un elemento (si existe)
+        // Detener el efecto de tecleo en un elemento
         function stopTyping(element) {
             if (!element) return;
             const id = activeTypingIntervals.get(element);
@@ -45,13 +45,12 @@
             if (!element) return;
             text = text || "";
 
-            // Si ya había un efecto activo para este elemento, lo detenemos primero
             stopTyping(element);
 
             element.textContent = "";
             if (text.length === 0) return;
 
-            // Reproducir sonido de tecleo (intenta, pero no interrumpirá si falla)
+            // Reproducir sonido de tecleo
             try {
                 const playPromise = typingSound.play();
                 if (playPromise && playPromise.catch) playPromise.catch(() => {});
@@ -80,7 +79,6 @@
                     const modal = document.getElementById(`${type}Modal`);
                     modal.style.display = "flex";
 
-                    // Si abrimos el modal de proyectos, renderizamos la lista dinámicamente
                     if (type === "projects") {
                         renderProjects();
                     }
@@ -139,7 +137,7 @@
             }
         };
 
-        // Lista de proyectos para renderizar dinámicamente
+        // Lista de proyectos 
         const projects = [
             {
                 title: "Biblioteca Pública de Puntarenas",
@@ -147,7 +145,6 @@
                 url: "https://bibliotecapublica-puntarenas.netlify.app/",
                 thumbnail: null
             }
-            // Puedes añadir más objetos aquí con las propiedades: title, description, url, thumbnail
         ];
 
         // Renderiza la lista de proyectos dentro del modal
