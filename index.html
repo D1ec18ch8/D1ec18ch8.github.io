@@ -74,7 +74,7 @@
 
         <section class="contact">
             <h2>Contacto</h2>
-            <p>Si deseas contactarme, haz clic en el botón de abajo:</p>
+            <p class="parrafo">Si deseas contactarme, haz clic en el botón de abajo:</p>
             <a href="mailto:jeffersonmoragaloria@gmail.com" class="btn">Enviar Correo</a>
         </section>
     </div>
@@ -85,10 +85,10 @@
 
     <!-- Modal para proyectos -->
     <div id="projectsModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content projects-modal">
             <button class="close-modal" onclick="closeModal()">Cerrar</button>
             <h2>Mis Proyectos</h2>
-            <p id="projectsText"></p>
+            <div id="projectsList" class="projects-list"></div>
         </div>
     </div>
 
@@ -105,7 +105,10 @@
                     <a href="https://www.credly.com/badges/2e59663b-362d-462c-948c-f8a445119692" target="_blank">
                         <img src="multimedia/Agile.png" alt="Certificación 2" class="certificacion-img">
                     </a>
-                    <!-- Agrega más certificaciones según sea necesario -->
+                    <a href="https://www.credly.com/badges/2f749448-f805-4057-bdb4-594d578efab7/linked_in_profile" target="_blank">
+                        <img src="multimedia/python-essentials.png" alt="Certificación 3" class="certificacion-img">
+                    </a>
+                    <!-- certificaciones -->
                 </div>
             </section>
         </div>

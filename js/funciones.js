@@ -77,22 +77,24 @@
 
         // Funciones para abrir y cerrar modales
         function openModal(type) {
-            const modal = document.getElementById(`${type}Modal`);
-            const textElement = document.getElementById(`${type}Text`);
+                    const modal = document.getElementById(`${type}Modal`);
+                    modal.style.display = "flex";
 
-            let text = "";
-            if (type === "projects") {
-                text = "Aquí estarán mis proyectos en el futuro. ¡Próximamente!";
-            }
-
-            modal.style.display = "flex";
-            if (textElement) typeText(textElement, text);
+                    // Si abrimos el modal de proyectos, renderizamos la lista dinámicamente
+                    if (type === "projects") {
+                        renderProjects();
+                    }
         }
 
         function closeModal() {
             document.querySelectorAll(".modal").forEach(modal => {
                 modal.style.display = "none";
             });
+            // limpiar proyectos renderizados y detener efectos de tipeo
+            const projectsList = document.getElementById("projectsList");
+            if (projectsList) projectsList.innerHTML = "";
+            const projectsText = document.getElementById("projectsText");
+            stopTyping(projectsText);
         }
 
         // Funciones para abrir y cerrar el modal de descripciones de lenguajes
@@ -136,3 +138,54 @@
                 stopTyping(languageDescription);
             }
         };
+
+        // Lista de proyectos para renderizar dinámicamente
+        const projects = [
+            {
+                title: "Biblioteca Pública de Puntarenas",
+                description: "Proyecto realizado para la Biblioteca Pública de Puntarenas. Sitio implementado y desplegado en Netlify.",
+                url: "https://bibliotecapublica-puntarenas.netlify.app/",
+                thumbnail: null
+            }
+            // Puedes añadir más objetos aquí con las propiedades: title, description, url, thumbnail
+        ];
+
+        // Renderiza la lista de proyectos dentro del modal
+        function renderProjects() {
+            const container = document.getElementById("projectsList");
+            if (!container) return;
+            // Limpiar contenido previo
+            container.innerHTML = "";
+
+            projects.forEach(proj => {
+                const item = document.createElement("div");
+                item.className = "project-item";
+
+                if (proj.thumbnail) {
+                    const img = document.createElement("img");
+                    img.src = proj.thumbnail;
+                    img.alt = proj.title;
+                    img.className = "project-thumb";
+                    item.appendChild(img);
+                }
+
+                const h3 = document.createElement("h3");
+                h3.textContent = proj.title;
+                item.appendChild(h3);
+
+                const p = document.createElement("p");
+                p.textContent = proj.description;
+                item.appendChild(p);
+
+                if (proj.url) {
+                    const a = document.createElement("a");
+                    a.href = proj.url;
+                    a.target = "_blank";
+                    a.className = "btn";
+                    a.textContent = "Ver proyecto";
+                    item.appendChild(a);
+                }
+
+                container.appendChild(item);
+            });
+        }
