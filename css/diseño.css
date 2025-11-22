@@ -1,0 +1,260 @@
+/* Estilos generales */
+        body {
+            background: black url('/multimedia/Grillby.webp') repeat;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            text-align: center;
+            cursor: url('/multimedia/favicon.ico'), auto;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barra de desplazamiento */
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #0d0d0d;
+            border-left: 1px solid #00ccff;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: #00ccff;
+            border-radius: 6px;
+            border: 2px solid #0d0d0d;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: #00aaff;
+            box-shadow: 0 0 10px #00aaff;
+        }
+
+        /* Encabezado */
+        header {
+            padding: 20px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border-bottom: 2px solid #00ccff;
+            animation: smoothMove 3s infinite alternate;
+            text-shadow: 0 0 10px #00ccff, 0 0 20px #00ccff, 0 0 40px #00ccff;
+            position: relative;
+        }
+
+        header p {
+            font-size: 0.6em;
+            margin: 10px 0 0;
+            text-transform: none;
+            letter-spacing: 2px;
+            color: #00ccff;
+        }
+
+        @keyframes smoothMove {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Contenedor principal */
+        .container {
+            padding: 50px;
+            animation: fadeIn 2s ease-in;
+            border: 3px solid #00ccff;
+            box-shadow: 0 0 20px #00ccff, 0 0 30px #00ccff;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        /* Botones y elementos interactivos */
+        .btn, .knowledge-item {
+            background: black;
+            color: #00ccff;
+            padding: 15px 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 2px solid #00ccff;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px #00ccff, 0 0 25px #00ccff;
+        }
+
+        .btn:hover, .knowledge-item:hover {
+            background: #00ccff;
+            color: black;
+            box-shadow: 0 0 30px #00ccff, 0 0 40px #00ccff;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Secciones */
+        .about-me, .knowledge, .projects, .certificaciones, .social-links, .contact {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #00ccff;
+            box-shadow: 0 0 15px #00ccff;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            text-align: center;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: black;
+            padding: 20px;
+            border: 2px solid #00ccff;
+            box-shadow: 0 0 20px #00ccff;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #00ccff;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .close-modal:hover {
+            background: #00aaff;
+            color: black;
+        }
+
+        /* Pie de página */
+        .copyright {
+            padding: 20px;
+            font-size: 0.8em;
+            color: #00ccff;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Redes sociales */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #00ccff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #00aaff;
+            text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff;
+        }
+
+        /* Botón de volumen */
+        .volume-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-btn {
+            background: black;
+            color: #00ccff;
+            border: 2px solid #00ccff;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px #00ccff;
+        }
+
+        .volume-btn:hover {
+            background: #00ccff;
+            color: black;
+            box-shadow: 0 0 20px #00ccff;
+        }
+
+        #volume-slider {
+            width: 100px;
+            appearance: none;
+            background: #00ccff;
+            height: 5px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #00ccff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .certificaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.certificacion-img {
+    width: 100%;
+    max-width: 200px;
+    border: 2px solid #00ccff;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 15px #00ccff;
+}
+
+.certificacion-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #00ccff;
+}
